@@ -1,18 +1,21 @@
 pipeline {
     agent any
-
     stages {
-        stage('clone project') {
+        stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/sharathg97/Terraform-Jenkins.git'
+                url: 'https://github.com/sharathg97/Terraform-Jenkins.git'
             }
         }
-
-        stage('clean') {
+        stage('Terraform init') {
             steps {
-                dir('Amazon') {
-                    sh 'mvn clean'
-                }
+                sh 'terraform init'
             }
         }
+        stage('Terraform apply') {
+            steps {
+                sh 'terraform apply --auto-approve'
+            }
+        }
+    }
+}
