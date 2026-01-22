@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    environment {
+    ARM_CLIENT_ID       = credentials('AZ_CLIENT_ID')
+    ARM_CLIENT_SECRET   = credentials('AZ_CLIENT_SECRET')
+    ARM_TENANT_ID       = credentials('AZ_TENANT_ID')
+    ARM_SUBSCRIPTION_ID = credentials('AZ_SUBSCRIPTION_ID')
+  }
     stages {
         stage('Checkout') {
             steps {
