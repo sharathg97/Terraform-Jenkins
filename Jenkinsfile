@@ -7,6 +7,19 @@ pipeline {
     ARM_SUBSCRIPTION_ID = credentials('AZ_SUBSCRIPTION_ID')
   }
     stages {
+        stage("Azure Login") {
+      steps {
+        sh '''
+          az login --service-principal \
+            --username "$ARM_CLIENT_ID" \
+            --password "$ARM_CLIENT_SECRET" \
+            --tenant "$ARM_TENANT_ID"
+
+          az account set --subscription "$ARM_SUBSCRIPTION_ID"
+          az account show
+        '''
+      }
+    }
         stage('Checkout') {
             steps {
                 git branch: 'main',
