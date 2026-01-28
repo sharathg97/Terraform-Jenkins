@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "Shar-Res-TF"
+  name     = "Shar-Res-TF-2"
   location = "Japan East"
 }
 
